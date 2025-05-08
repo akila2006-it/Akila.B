@@ -1,0 +1,43 @@
+# Step 1: Install Required Libraries
+!pip install mlxtend
+
+# Step 2: Import Libraries
+import pandas as pd
+from mlxtend.frequent_patterns import apriori, association_rules
+
+# Step 3: Sample Dataset - Replace this with your retail dataset
+# Sample transaction data
+dataset = [
+    ['milk', 'bread', 'nuts', 'apple'],
+    ['milk', 'bread', 'nuts'],
+    ['milk', 'bread'],
+    ['milk', 'apple'],
+    ['milk', 'bread', 'apple'],
+    ['bread', 'nuts']
+]
+
+# Step 4: Convert Dataset to One-Hot Encoded DataFrame
+from mlxtend.preprocessing import TransactionEncoder
+
+te = TransactionEncoder()
+te_data = te.fit(dataset).transform(dataset)
+df = pd.DataFrame(te_data, columns=te.columns_)
+
+print("Transaction Data:")
+print(df)
+
+# Step 5: Generate Frequent Itemsets
+frequent_itemsets = apriori(df, min_support=0.3, use_colnames=True)
+print("\nFrequent Itemsets:")
+print(frequent_itemsets)
+
+# Step 6: Generate Association Rules
+rules = association_rules(frequent_itemsets, metric="lift", min_threshold=1.0)
+print("\nAssociation Rules:")
+print(rules[['antecedents', 'consequents', 'support', 'confidence', 'lift']])
+
+# Optional: Filter strong rules
+strong_rules = rules[(rules['confidence'] > 0.6) & (rules['lift'] > 1.2)]
+print("\nStrong Association Rules (Confidence > 0.6, Lift > 1.2):")
+print(strong_rules[['antecedents', 'consequents', 'support', 'confidence', 'lift']])
+
