@@ -1,0 +1,63 @@
+Dataset: Retail Transactions for Association Rule Mining
+
+Objective: Identify patterns in customer purchases to support retail decision-making such as product placement, bundling, and promotions.
+
+1. Dataset Name: retail_transactions.csv
+
+2. Description:
+
+Each row represents a single transaction (a shopping basket) containing a list of items purchased by a customer in a retail store.
+
+
+---
+
+Sample Structure (Transaction Format):
+
+
+---
+
+Key Attributes:
+
+Transaction_ID: A unique identifier for each customer transaction.
+
+Items: A comma-separated list of items bought in that transaction.
+
+
+
+---
+
+Example Items:
+
+Milk
+
+Bread
+
+Eggs
+
+Diapers
+
+Beer
+
+Cola
+
+Chips
+
+Cheese
+
+Cereal
+
+Apples
+
+
+
+---
+
+Use Case for Retail Optimization:
+
+Find frequent itemsets (e.g., {bread, milk}) to promote as a combo.
+
+Identify strong association rules (e.g., if {diapers}, then {beer}) to improve store layout.
+
+Optimize stock and inventory for frequently bought itemsets.
+
+Design marketing campaigns based on buying behavior patterns.
